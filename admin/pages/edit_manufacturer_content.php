@@ -1,0 +1,80 @@
+<?php
+$manufacturer_id = $_GET['manufacturer_id'];
+
+if (isset($_POST['btn'])) {
+    $obj_admin->update_manufacturer_info_by_id($_POST);
+}
+$manufacturer_info = $obj_admin->select_all_manufacturer_info_by_id($manufacturer_id);
+?>
+<div class="row match-height">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h2 class="card-title" id="basic-layout-form-center">Edit Manufacturer Form</h2>
+                <a class="heading-elements-toggle"><i class="icon-ellipsis font-medium-3"></i></a>
+                <div class="heading-elements">
+                    <ul class="list-inline mb-0">
+                        <li><a data-action="collapse"><i class="icon-minus4"></i></a></li>
+                        <li><a data-action="reload"><i class="icon-reload"></i></a></li>
+                        <li><a data-action="expand"><i class="icon-expand2"></i></a></li>
+                        <li><a data-action="close"><i class="icon-cross2"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card-body collapse in">
+                <div class="card-block">
+
+                    <form name="edit_manufacturer_form" class="form" action="" method="post">
+                        <div class="row">
+                            <div class="col-md-6 offset-md-3">
+                                <div class="form-body">
+                                    <div class="card-block card-dashboard">
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="eventInput1">Manufacturer Name</label>
+                                        <input type="text" id="eventInput1" class="form-control" placeholder="Manufacturer Name" name="manufacturer_name" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="Manufacturer Name" value="<?php echo $manufacturer_info["manufacturer_name"]; ?>">
+                                        <input type="hidden" id="eventInput1" class="form-control" placeholder="Manufacturer Id" name="manufacturer_id" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="Manufacturer Id" value="<?php echo $manufacturer_info["manufacturer_id"]; ?>">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="issueinput8">Manufacturer Description</label>
+                                        <textarea id="issueinput8" rows="5" class="form-control" name="manufacturer_description" placeholder="Manufacturer Description" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="Manufacturer Description">
+                                            <?php echo $manufacturer_info["manufacturer_description"]; ?>
+                                        </textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="issueinput6">Publication Status</label>
+                                        <select id="issueinput6" name="publication_status" class="form-control" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="Publication_status">
+                                            <option value="">-- Select Publication_status --</option>
+                                            <option value="1">Published</option>
+                                            <option value="0">Unpublished</option>
+                                        </select>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-actions center">
+                            <button name="btn" type="submit" class="btn btn-primary">
+                                <i class="icon-check2"></i> Update Manufacturer
+                            </button>
+                            <button name="btn" type="reset" class="btn btn-warning mr-1">
+                                <i class="icon-cross2"></i> Reset
+                            </button>
+
+                        </div>
+                    </form>	
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    document.forms["edit_manufacturer_form"].elements['publication_status'].value = "<?php echo $manufacturer_info["publication_status"]; ?>";
+</script>
+
+
